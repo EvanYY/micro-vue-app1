@@ -11,7 +11,6 @@
     <router-view :key="(new Date()).getTime()" />
   </div>
 </template>
-
 <script>
 export default {
   name: 'App',
