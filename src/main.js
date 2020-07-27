@@ -23,7 +23,7 @@ function render() {
   router = new VueRouter({
     // 运行在主应用中时，添加路由命名空间 /vue
     base: window.__POWERED_BY_QIANKUN__ ? "/vue" : "/",
-    mode: "history",
+    mode: "hash",
     routes,
   });
 
