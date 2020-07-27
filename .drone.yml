@@ -15,6 +15,7 @@ steps:
     commands:
       - npm set registry http://10.2.2.164:8081/repository/npm-public/
       - npm i
+      - echo $build
       - npm run build
       - cp -r dist website
     when:
