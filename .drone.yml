@@ -16,7 +16,7 @@ steps:
       - npm set registry http://10.2.2.164:8081/repository/npm-public/
       - npm i
       - npm run build:$build
-      - cp -r dist auto-site
+      - cp -r dist website
     when:
       event:
         #    - merge
@@ -35,7 +35,7 @@ steps:
         from_secret: user
       password:
         from_secret: pwd
-      source: auto-site
+      source: website
     when:
       event:
         - push
