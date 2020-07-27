@@ -37,7 +37,7 @@ steps:
         from_secret: host
       user:
         from_secret: user
-      password:
+      key:
         from_secret: pwd
       source: website
     when:
