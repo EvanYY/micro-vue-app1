@@ -43,10 +43,8 @@ steps:
     settings:
       target:
         from_secret: file_path
-      host:
-        from_secret: host
-      user:
-        from_secret: user
+      host: 182.92.153.214
+      user: root
       key:
         from_secret: key
       source: website
