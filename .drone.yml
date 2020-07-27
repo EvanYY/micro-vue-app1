@@ -20,7 +20,7 @@ steps:
       - npm i
       - echo $build
       - npm run build:$build
-      - cp -r dist website
+      - cp -r dist micro-app1
     when:
       event:
         - push
@@ -35,7 +35,7 @@ steps:
         from_secret: user
       key:
         from_secret: key
-      source: website
+      source: micro-app1
     when:
       event:
         - push
