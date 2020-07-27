@@ -1,0 +1,60 @@
+kind: pipeline
+type: docker
+name: default
+
+platform:
+os: linux
+arch: amd64
+
+steps:
+
+
+  - name: build-node
+    image: harbor.leadscloud.com:8443/library/node:13.10.1-stretch
+    settings:
+    commands:
+      - npm set registry http://10.2.2.164:8081/repository/npm-public/
+      - npm i
+      - npm run build:$build
+      - cp -r dist auto-site
+    when:
+      event:
+        #    - merge
+        - push
+  #    - pull_request
+
+
+  - name: scp-files
+    image: appleboy/drone-scp
+    settings:
+      target:
+        from_secret: file_path
+      host:
+        from_secret: host
+      user:
+        from_secret: user
+      password:
+        from_secret: pwd
+      source: auto-site
+    when:
+      event:
+        - push
+  - name: dingtalk
+    image: lddsb/drone-dingtalk-message
+    settings:
+      token:
+        from_secret: dingtalk_token
+      type: markdown
+      message_color: true
+      message_pic: true
+      sha_link: true
+    when:
+      event:
+        - push
+
+trigger:
+status:
+  - success
+  - error
+  - failure
+  - killed
