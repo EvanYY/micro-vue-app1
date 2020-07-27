@@ -1,6 +1,8 @@
 const path = require('path');
+const eslintSorceMap = process.env.NODE_ENV !== 'production' 
 
 module.exports = {
+  lintOnSave: eslintSorceMap,
   devServer: {
     // 监听端口
     port: 10200,
