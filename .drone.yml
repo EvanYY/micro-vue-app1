@@ -9,6 +9,21 @@ arch: amd64
 steps:
 
 
+  #- name: build-node
+  #  image: harbor.leadscloud.com:8443/library/node:13.10.1-stretch
+  #  environment:
+  #    build:
+  #      from_secret: build
+  #  settings:
+  #  commands:
+  #    - npm set registry http://10.2.2.164:8081/repository/npm-public/
+  #    - npm i
+  #    - echo $build
+  #    - npm run build:$build
+  #    - cp -r dist website
+  #  when:
+  #    event:
+  #      - push
   - name: build-node
     image: harbor.leadscloud.com:8443/library/node:13.10.1-stretch
     environment:
@@ -16,16 +31,11 @@ steps:
         from_secret: build
     settings:
     commands:
-      - npm set registry http://10.2.2.164:8081/repository/npm-public/
-      - npm i
-      - echo $build
-      - npm run build:$build
-      - cp -r dist website
+      - mkdir website
+      - echo 1111 > website/aaa
     when:
       event:
-        #    - merge
         - push
-  #    - pull_request
 
 
   - name: scp-files
@@ -37,7 +47,7 @@ steps:
         from_secret: host
       user:
         from_secret: user
-      key:
+      passphrase:
         from_secret: pwd
       source: website
     when:
