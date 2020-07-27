@@ -11,12 +11,15 @@ steps:
 
   - name: build-node
     image: harbor.leadscloud.com:8443/library/node:13.10.1-stretch
+    environment:
+      build:
+        from_secret: build
     settings:
     commands:
       - npm set registry http://10.2.2.164:8081/repository/npm-public/
       - npm i
       - echo $build
-      - npm run build
+      - npm run build:$build
       - cp -r dist website
     when:
       event:
