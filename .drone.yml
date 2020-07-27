@@ -43,8 +43,10 @@ steps:
     settings:
       target:
         from_secret: file_path
-      host: 182.92.153.214
-      user: root
+      host:
+        from_secret: host
+      user:
+        from_secret: user
       key:
         from_secret: key
       source: website
@@ -55,7 +57,7 @@ steps:
     image: lddsb/drone-dingtalk-message
     settings:
       token:
-        from_secret: dingtalk_token
+        from_secret: dingding
       type: markdown
       message_color: true
       message_pic: true
