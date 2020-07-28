@@ -3,7 +3,7 @@ const eslintSorceMap = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   lintOnSave: eslintSorceMap,
-  publicPath: process.env.NODE_ENV === 'production' ? '/micro-app1/': '/',
+  // publicPath: process.env.NODE_ENV === 'production' ? '/micro-app1/': '/',
   devServer: {
     // 监听端口
     port: 10200,
