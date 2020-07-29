@@ -10,6 +10,15 @@
 </template>
 <script>
 export default {
-  name: "Home"
-}
+  name: "Home",
+  beforeRouteEnter(to,from,next) {
+    next()
+  },
+  beforeRouteLeave(to, from, next) {
+    debugger
+    console.log(to);
+    console.log(from);
+    console.log(next);
+  }
+};
 </script>

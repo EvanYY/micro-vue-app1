@@ -1,20 +1,14 @@
 <template>
   <div id="app">
-     <a-menu :selectedKeys="[currentRoute]" mode="horizontal" theme="dark">
-      <a-menu-item 
-        v-for="(item) in menus" 
-        :key="item.key"
-        >
-        <router-link :to="item.route">{{item.title}}</router-link>
-      </a-menu-item>
-     </a-menu>
-    <router-view :key="(new Date()).getTime()" />
+    <div v-for="(item) in menus" :key="item.key">
+      <router-link  >{{item.title}}</router-link>
+    </div>
+    <router-view />
   </div>
 </template>
 <script>
 export default {
-  name: 'App',
-
+  name: "App",
   data() {
     return {
       menus: [
@@ -22,24 +16,21 @@ export default {
           key: "vue",
           route: "/",
           title: "主页"
-        },
-        {
-          key: "vue-list",
-          route: "/list",
-          title: "列表页"
         }
+        // {
+        //   key: "vue-list",
+        //   route: "/list",
+        //   title: "列表页"
+        // }
       ]
-    }
+    };
   },
 
   computed: {
     currentRoute() {
-      const menu = this.menus.find(item => item.route === this.$route.path)
+      const menu = this.menus.find(item => item.route === this.$route.path);
       return menu ? menu.key : "vue";
     }
-  },
-}
+  }
+};
 </script>
-
-<style>
-</style>
